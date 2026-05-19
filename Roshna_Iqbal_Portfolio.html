@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roshna Iqbal — SQA Automation Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple: #7c5cfc;
+  --purple-light: #a78bfa;
+  --purple-dim: #4c3599;
+  --purple-bg: #13131f;
+  --bg: #09090f;
+  --bg2: #0d0d1a;
+  --bg3: #13131f;
+  --border: #1e1e2e;
+  --border2: #2a2a3e;
+  --text: #e8e6f0;
+  --text2: #a0a0b8;
+  --text3: #555568;
+  --green: #22c55e;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Inter', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 60px;
+  background: rgba(9,9,15,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-logo { font-size: 18px; font-weight: 900; letter-spacing: 0.5px; color: #fff; }
+.nav-logo em { color: var(--purple); font-style: normal; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { font-size: 13px; color: var(--text3); letter-spacing: 0.3px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--purple-light); }
+.nav-cta {
+  background: var(--purple); color: #fff; font-size: 13px; font-weight: 700;
+  padding: 8px 20px; border-radius: 8px; border: none; cursor: pointer;
+  font-family: var(--sans); transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--purple-dim); }
+
+/* SECTIONS */
+section { padding: 96px 48px; max-width: 1100px; margin: 0 auto; }
+.sec-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--purple); margin-bottom: 10px;
+}
+.sec-h {
+  font-size: 36px; font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: 16px;
+}
+.sec-sub { font-size: 15px; color: var(--text2); line-height: 1.7; max-width: 580px; }
+
+/* HERO */
+#hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; padding-top: 120px; padding-bottom: 60px;
+  max-width: 1100px; margin: 0 auto;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--bg3); border: 0.5px solid var(--border2);
+  border-radius: 20px; padding: 5px 14px; margin-bottom: 28px; width: fit-content;
+}
+.hero-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+.hero-badge-t { font-size: 12px; color: var(--text3); letter-spacing: 0.3px; }
+.hero-h1 {
+  font-size: clamp(40px, 5vw, 68px); font-weight: 900;
+  line-height: 1.1; color: #fff; margin-bottom: 20px;
+}
+.hero-h1 .accent { color: var(--purple); display: block; }
+.hero-sub {
+  font-size: 18px; color: var(--text2); line-height: 1.75;
+  max-width: 600px; margin-bottom: 36px;
+}
+.hero-btns { display: flex; gap: 14px; margin-bottom: 56px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--purple); color: #fff; font-size: 14px; font-weight: 700;
+  padding: 13px 26px; border-radius: 9px; border: none; cursor: pointer;
+  font-family: var(--sans); display: flex; align-items: center; gap: 8px;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--purple-dim); transform: translateY(-1px); }
+.btn-outline {
+  background: transparent; color: var(--purple-light); font-size: 14px; font-weight: 700;
+  padding: 13px 26px; border-radius: 9px; border: 1.5px solid var(--purple);
+  cursor: pointer; font-family: var(--sans); transition: background 0.2s;
+}
+.btn-outline:hover { background: rgba(124,92,252,0.08); }
+.hero-stats {
+  display: flex; gap: 40px; padding-top: 40px;
+  border-top: 0.5px solid var(--border); flex-wrap: wrap;
+}
+.stat-n { font-size: 28px; font-weight: 900; color: var(--purple); }
+.stat-l { font-size: 11px; color: var(--text3); margin-top: 3px; letter-spacing: 0.3px; }
+
+/* LIVE AUTOMATION */
+#automation {
+  background: var(--bg2);
+  border-top: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
+  padding: 80px 48px;
+}
+.auto-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; }
+.auto-left .sec-h { font-size: 30px; }
+.auto-left p { font-size: 14px; color: var(--text2); line-height: 1.75; margin-top: 14px; }
+.auto-card {
+  background: var(--bg3); border: 0.5px solid var(--border2);
+  border-radius: 14px; overflow: hidden;
+}
+.auto-card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 0.5px solid var(--border);
+}
+.auto-scenario { display: flex; align-items: center; gap: 12px; }
+.auto-icon {
+  width: 36px; height: 36px; background: var(--bg2); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--purple); font-size: 18px; border: 0.5px solid var(--border2);
+}
+.auto-name { font-size: 13px; font-weight: 700; color: var(--text); }
+.auto-url { font-size: 11px; color: var(--text3); margin-top: 1px; font-family: var(--mono); }
+.exec-btn {
+  background: var(--purple); color: #fff; font-size: 12px; font-weight: 800;
+  padding: 9px 18px; border-radius: 7px; border: none; cursor: pointer;
+  font-family: var(--sans); display: flex; align-items: center; gap: 6px;
+  letter-spacing: 0.3px; transition: background 0.2s;
+}
+.exec-btn:hover { background: var(--purple-dim); }
+.exec-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.auto-steps { padding: 16px 20px; display: flex; flex-direction: column; gap: 8px; }
+.step {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12.5px; color: var(--text3); transition: color 0.3s;
+}
+.step.done { color: var(--text); }
+.step.active { color: var(--purple-light); }
+.step.failed { color: var(--red); }
+.step-dot {
+  width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+  background: var(--bg2); border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; color: var(--text3); font-weight: 700;
+  transition: all 0.3s;
+}
+.step.done .step-dot { background: var(--green); border-color: var(--green); color: #fff; }
+.step.active .step-dot { background: var(--purple); border-color: var(--purple); color: #fff; }
+.step.failed .step-dot { background: var(--red); border-color: var(--red); color: #fff; }
+.terminal {
+  background: #06060f; border-top: 0.5px solid var(--border);
+  padding: 14px 20px; font-family: var(--mono); font-size: 11.5px;
+  color: var(--green); line-height: 1.7; min-height: 110px;
+}
+.t-dim { color: var(--text3); }
+.t-warn { color: var(--amber); }
+.t-err { color: var(--red); }
+.t-pass { color: var(--green); }
+.auto-results {
+  padding: 14px 20px; border-top: 0.5px solid var(--border);
+  display: none; gap: 10px;
+}
+.result-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 5px;
+}
+.result-pass { background: rgba(34,197,94,0.12); color: var(--green); }
+.result-fail { background: rgba(239,68,68,0.12); color: var(--red); }
+.result-time { background: rgba(124,92,252,0.12); color: var(--purple-light); }
+
+/* ABOUT */
+#about { border-bottom: 0.5px solid var(--border); }
+.about-grid { display: grid; grid-template-columns: 1fr 340px; gap: 64px; align-items: start; margin-top: 48px; }
+.about-p { font-size: 15px; color: var(--text2); line-height: 1.8; margin-bottom: 18px; }
+.about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.tag {
+  background: var(--bg3); border: 0.5px solid var(--border2);
+  color: var(--purple-light); font-size: 12px; font-weight: 600;
+  padding: 5px 12px; border-radius: 5px;
+}
+.about-card {
+  background: var(--bg3); border: 0.5px solid var(--border2);
+  border-radius: 14px; padding: 28px; position: sticky; top: 80px;
+}
+.avatar-circle {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: rgba(124,92,252,0.15); border: 2px solid var(--purple);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; font-weight: 900; color: var(--purple); margin-bottom: 16px;
+}
+.about-card h3 { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.about-card .role { font-size: 12px; color: var(--purple-light); margin-bottom: 20px; }
+.about-fact { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 0.5px solid var(--border); font-size: 12.5px; }
+.about-fact:last-child { border: none; }
+.about-fact-l { color: var(--text3); }
+.about-fact-r { color: var(--text); font-weight: 600; text-align: right; }
+
+/* SKILLS */
+#skills { border-bottom: 0.5px solid var(--border); }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+.skill-card {
+  background: var(--bg3); border: 0.5px solid var(--border2);
+  border-radius: 12px; padding: 20px;
+  transition: border-color 0.2s;
+}
+.skill-card:hover { border-color: var(--purple); }
+.skill-card-name {
+  font-size: 12px; font-weight: 700; color: var(--purple-light);
+  letter-spacing: 0.5px; margin-bottom: 14px; text-transform: uppercase;
+}
+.skill-item {
+  font-size: 13px; color: var(--text2); padding: 4px 0;
+  display: flex; align-items: center; gap: 7px;
+}
+.skill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--border2); flex-shrink: 0; }
+.skill-item.hi .skill-dot { background: var(--purple); }
+.skill-item.hi { color: var(--text); }
+
+/* PROJECTS */
+#projects { border-bottom: 0.5px solid var(--border); }
+.proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 48px; }
+.proj-card {
+  background: var(--bg3); border: 0.5px solid var(--border2);
+  border-radius: 14px; padding: 24px; cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.proj-card:hover { border-color: var(--purple); transform: translateY(-2px); }
+.proj-card.featured { border-color: rgba(124,92,252,0.5); }
+.proj-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+.proj-icon {
+  width: 40px; height: 40px; background: var(--bg2); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--purple); font-size: 20px; border: 0.5px solid var(--border2);
+}
+.proj-badge {
+  font-size: 10px; font-weight: 700; background: rgba(124,92,252,0.12);
+  color: var(--purple-light); padding: 3px 9px; border-radius: 4px;
+  letter-spacing: 0.5px; text-transform: uppercase;
+}
+.proj-name { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+.proj-desc { font-size: 13px; color: var(--text2); line-height: 1.65; margin-bottom: 16px; }
+.proj-detail { margin-bottom: 16px; }
+.proj-detail-label { font-size: 10.5px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+.proj-detail p { font-size: 12.5px; color: var(--text2); line-height: 1.6; }
+.proj-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.proj-tag {
+  font-size: 11px; background: var(--bg2); color: var(--text3);
+  padding: 3px 8px; border-radius: 4px; border: 0.5px solid var(--border);
+}
+
+/* EXPERIENCE */
+#experience { border-bottom: 0.5px solid var(--border); }
+.exp-timeline { margin-top: 48px; display: flex; flex-direction: column; gap: 20px; }
+.exp-card {
+  background: var(--bg3); border: 0.5px solid var(--border2);
+  border-radius: 14px; padding: 28px;
+}
+.exp-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
+.exp-role { font-size: 17px; font-weight: 800; color: #fff; }
+.exp-co { font-size: 13px; color: var(--purple-light); margin-top: 3px; font-weight: 600; }
+.exp-domain { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.exp-date { font-size: 12px; color: var(--text3); text-align: right; white-space: nowrap; }
+.exp-date strong { display: block; font-size: 13px; color: var(--purple-light); font-weight: 700; }
+.exp-buls { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.exp-buls li {
+  font-size: 13.5px; color: var(--text2); padding-left: 18px;
+  position: relative; line-height: 1.6;
+}
+.exp-buls li::before { content: '→'; position: absolute; left: 0; color: var(--purple); font-size: 12px; top: 2px; }
+.exp-buls li.star { color: var(--text); font-weight: 600; }
+.exp-buls li.star::before { content: '◆'; font-size: 9px; top: 4px; }
+
+/* CURRENTLY WORKING ON */
+#current { border-bottom: 0.5px solid var(--border); }
+.current-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 48px; }
+.current-card {
+  background: var(--bg3); border: 0.5px solid var(--border2);
+  border-radius: 12px; padding: 22px;
+}
+.current-tag {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--purple); margin-bottom: 10px;
+}
+.current-title { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.current-desc { font-size: 12.5px; color: var(--text2); line-height: 1.65; }
+.progress-bar { height: 3px; background: var(--border); border-radius: 2px; margin-top: 14px; }
+.progress-fill { height: 100%; border-radius: 2px; background: var(--purple); }
+
+/* CONTACT */
+#contact { padding-bottom: 80px; }
+.contact-inner { max-width: 600px; }
+.contact-h { font-size: 38px; font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 16px; }
+.contact-sub { font-size: 15px; color: var(--text2); margin-bottom: 36px; line-height: 1.7; }
+.contact-links { display: flex; gap: 12px; flex-wrap: wrap; }
+.contact-btn {
+  display: flex; align-items: center; gap: 9px;
+  background: var(--bg3); border: 0.5px solid var(--border2);
+  color: var(--text); font-size: 13px; font-weight: 600;
+  padding: 12px 18px; border-radius: 10px; cursor: pointer;
+  font-family: var(--sans); transition: border-color 0.2s, background 0.2s;
+}
+.contact-btn:hover { border-color: var(--purple); background: rgba(124,92,252,0.06); }
+.contact-btn svg { width: 16px; height: 16px; color: var(--purple); flex-shrink: 0; }
+
+/* FOOTER */
+footer {
+  border-top: 0.5px solid var(--border); padding: 24px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: 100%;
+}
+.footer-copy { font-size: 12px; color: var(--text3); }
+.footer-avail { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text3); }
+.footer-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+
+/* CURSOR BLINK */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.cursor { display: inline-block; animation: blink 1s infinite; color: var(--green); }
+
+/* SPIN */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinning { display: inline-block; animation: spin 1s linear infinite; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  section { padding: 60px 20px; }
+  #automation { padding: 60px 20px; }
+  .auto-inner { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .current-grid { grid-template-columns: 1fr; }
+  .hero-h1 { font-size: 36px; }
+  footer { padding: 20px; flex-direction: column; gap: 10px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Roshna <em>I.</em></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge">
+    <div class="hero-dot"></div>
+    <span class="hero-badge-t">Senior SDET / QA Automation Engineer</span>
+  </div>
+  <h1 class="hero-h1">
+    I break software<br>before your users do.
+    <span class="accent">Systematically.</span>
+  </h1>
+  <p class="hero-sub">
+    SQA Automation Engineer building frameworks that scale. I write code that tests code — with Playwright, Selenium, Postman, and AI-powered tools. Backend-aware, full-stack curious, relentlessly precise.
+  </p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('automation').scrollIntoView({behavior:'smooth'})">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Run Live Automation
+    </button>
+    <button class="btn-outline" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Projects</button>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-n">4+</div><div class="stat-l">Years experience</div></div>
+    <div><div class="stat-n">70%</div><div class="stat-l">Automation coverage at IDS</div></div>
+    <div><div class="stat-n">p50/p95</div><div class="stat-l">Perf benchmarking</div></div>
+    <div><div class="stat-n">ISTQB</div><div class="stat-l">Certified tester</div></div>
+    <div><div class="stat-n">4</div><div class="stat-l">Domains tested</div></div>
+  </div>
+</section>
+
+<!-- LIVE AUTOMATION DEMO -->
+<div id="automation">
+  <div class="auto-inner">
+    <div class="auto-left">
+      <div class="sec-label">Live Demo</div>
+      <h2 class="sec-h" style="font-size:30px">Watch automation<br>run in real time</h2>
+      <p>This is not a recording. Click Execute and watch a simulated Playwright script run through a real test scenario — step by step, with live terminal output streaming in as each assertion completes.</p>
+      <p style="margin-top:12px">Built to show CTOs and hiring managers exactly how I think about test design: structured steps, clear assertions, meaningful output.</p>
+    </div>
+    <div class="auto-card">
+      <div class="auto-card-header">
+        <div class="auto-scenario">
+          <div class="auto-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div>
+            <div class="auto-name">Login + Form Validation Suite</div>
+            <div class="auto-url">the-internet.herokuapp.com</div>
+          </div>
+        </div>
+        <button class="exec-btn" id="execBtn" onclick="runAutomation()">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Execute
+        </button>
+      </div>
+      <div class="auto-steps" id="autoSteps">
+        <div class="step" id="step0"><div class="step-dot" id="dot0">1</div>Launch Playwright browser (Chromium)</div>
+        <div class="step" id="step1"><div class="step-dot" id="dot1">2</div>Navigate to /login page</div>
+        <div class="step" id="step2"><div class="step-dot" id="dot2">3</div>Assert page title and form elements</div>
+        <div class="step" id="step3"><div class="step-dot" id="dot3">4</div>Fill invalid credentials, assert error</div>
+        <div class="step" id="step4"><div class="step-dot" id="dot4">5</div>Fill valid credentials, submit form</div>
+        <div class="step" id="step5"><div class="step-dot" id="dot5">6</div>Assert successful login state</div>
+        <div class="step" id="step6"><div class="step-dot" id="dot6">7</div>Navigate to /form, fill and submit</div>
+        <div class="step" id="step7"><div class="step-dot" id="dot7">8</div>Generate pass/fail report</div>
+      </div>
+      <div class="terminal" id="terminal">
+        <span class="t-dim">// Click Execute to run the test suite</span><span class="cursor">_</span>
+      </div>
+      <div class="auto-results" id="autoResults">
+        <span class="result-pill result-pass">✓ 7 passed</span>
+        <span class="result-pill result-fail">✗ 0 failed</span>
+        <span class="result-pill result-time">⏱ 3.2s total</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-label">About</div>
+  <h2 class="sec-h">Engineer first.<br>QA second. Always both.</h2>
+  <div class="about-grid">
+    <div>
+      <p class="about-p">I started in manual QA and moved fast into automation — not because it was the path of least resistance, but because I saw how much broken software cost teams that shipped without a safety net. I became the person who built that net.</p>
+      <p class="about-p">At Integrated Dealer Systems I led Service CRM automation inside a .NET/C# Selenium framework — POM, TDD, NUnit — and brought coverage from near zero to 70%, cutting regression cycle time by 40%. I was the QA point of contact for release management across web, desktop, and mobile.</p>
+      <p class="about-p">At Motive I stepped into a high-scale AWS fleet and driver safety platform. I engineered Playwright regression suites, built API automation pipelines with Postman and Newman, and architected the CX Performance Test Suite — a pre-release benchmarking pipeline that measured p50 and p95 response times across critical customer journeys before every single release.</p>
+      <p class="about-p">Beyond testing: I have shipped a full-stack mobile app (React Native, Node.js, PostgreSQL) and built a C# .NET data generator with exponential backoff retry logic, SemaphoreSlim parallel execution, and token-based auth. Understanding the system is what makes testing it precise.</p>
+      <div class="about-tags">
+        <span class="tag">Playwright</span><span class="tag">Selenium</span><span class="tag">Postman</span>
+        <span class="tag">Node.js</span><span class="tag">C# / .NET</span><span class="tag">Claude AI Agents</span>
+        <span class="tag">AWS / SQS</span><span class="tag">Datadog</span><span class="tag">Statsig</span>
+        <span class="tag">ISTQB</span><span class="tag">AccelQ</span><span class="tag">Jenkins</span>
+      </div>
+    </div>
+    <div>
+      <div class="about-card">
+        <div class="avatar-circle">RI</div>
+        <h3>Roshna Iqbal</h3>
+        <div class="role">SQA Automation Engineer</div>
+        <div class="about-fact"><span class="about-fact-l">Experience</span><span class="about-fact-r">4+ years</span></div>
+        <div class="about-fact"><span class="about-fact-l">Domains</span><span class="about-fact-r">Banking, Healthcare,<br>Automotive, Fleet SaaS</span></div>
+        <div class="about-fact"><span class="about-fact-l">Certifications</span><span class="about-fact-r">ISTQB, AccelQ, A4Q</span></div>
+        <div class="about-fact"><span class="about-fact-l">Location</span><span class="about-fact-r">Karachi, Pakistan</span></div>
+        <div class="about-fact"><span class="about-fact-l">Education</span><span class="about-fact-r">BE Biomedical Eng.<br>Hamdard University</span></div>
+        <div class="about-fact"><span class="about-fact-l">Email</span><span class="about-fact-r">roshna.iqbal@gmail.com</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-label">Capabilities</div>
+  <h2 class="sec-h">What I actually do well</h2>
+  <p class="sec-sub">Not a list of tools I have heard of — a map of where I have shipped real work.</p>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-name">Test Automation</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Playwright</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Selenium / C#</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Page Object Model</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>TDD / BDD</div>
+      <div class="skill-item"><div class="skill-dot"></div>Cypress</div>
+      <div class="skill-item"><div class="skill-dot"></div>Appium</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-name">API and Backend</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Postman / Newman</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Node.js / Express</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>JWT Auth</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>REST Assured</div>
+      <div class="skill-item"><div class="skill-dot"></div>PostgreSQL</div>
+      <div class="skill-item"><div class="skill-dot"></div>Swagger</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-name">AI and Agentic</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Claude Agents</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Prompt Engineering</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>AccelQ</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Mabl</div>
+      <div class="skill-item"><div class="skill-dot"></div>TestRigor</div>
+      <div class="skill-item"><div class="skill-dot"></div>Applitools</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-name">Observability</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Datadog</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>TrackJS</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Rootly</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>p50/p95 benchmarking</div>
+      <div class="skill-item"><div class="skill-dot"></div>Statsig</div>
+      <div class="skill-item"><div class="skill-dot"></div>Adobe Analytics</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-name">CI/CD and Cloud</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Jenkins</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>AWS / AWS SQS</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>GitHub Actions</div>
+      <div class="skill-item"><div class="skill-dot"></div>Azure DevOps</div>
+      <div class="skill-item"><div class="skill-dot"></div>Docker</div>
+      <div class="skill-item"><div class="skill-dot"></div>SonarQube</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-name">Engineering Patterns</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Retry / exponential backoff</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Parallel execution</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Dependency injection</div>
+      <div class="skill-item hi"><div class="skill-dot"></div>Feature flag validation</div>
+      <div class="skill-item"><div class="skill-dot"></div>CSV / data export</div>
+      <div class="skill-item"><div class="skill-dot"></div>BrowserStack / ExperiTest</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-label">Projects</div>
+  <h2 class="sec-h">Built, not just tested</h2>
+  <p class="sec-sub">Real engineering decisions, real challenges, real outcomes.</p>
+  <div class="proj-grid">
+
+    <div class="proj-card featured">
+      <div class="proj-top">
+        <div class="proj-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <span class="proj-badge">Full-stack</span>
+      </div>
+      <div class="proj-name">Find My Mechanic</div>
+      <div class="proj-desc">Full-stack mobile app built to connect drivers with local mechanics. Designed for scalability and QA-friendly architecture from the ground up.</div>
+      <div class="proj-detail">
+        <div class="proj-detail-label">Engineering decisions</div>
+        <p>Modular Expo Router file-based navigation, centralised Axios service layer, JWT auth with refresh token handling, structured backend with controllers, routes, middleware, and models separated cleanly.</p>
+      </div>
+      <div class="proj-detail">
+        <div class="proj-detail-label">Key challenge</div>
+        <p>Making the API layer fully mockable for automated testing without coupling tests to the live backend. Solved with a service abstraction layer.</p>
+      </div>
+      <div class="proj-stack">
+        <span class="proj-tag">React Native</span><span class="proj-tag">Expo Router</span>
+        <span class="proj-tag">Node.js</span><span class="proj-tag">Express</span>
+        <span class="proj-tag">PostgreSQL</span><span class="proj-tag">JWT</span>
+        <span class="proj-tag">Axios</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <span class="proj-badge">C# / .NET</span>
+      </div>
+      <div class="proj-name">TestDataGenerator</div>
+      <div class="proj-desc">Production-grade C# .NET console tool for bulk test data generation with enterprise-level reliability patterns built in.</div>
+      <div class="proj-detail">
+        <div class="proj-detail-label">Engineering decisions</div>
+        <p>SemaphoreSlim for controlled parallel execution, exponential backoff retry on 429 rate limit errors, strict separation of API models from data models, dependency injection throughout, CSV export pipeline.</p>
+      </div>
+      <div class="proj-detail">
+        <div class="proj-detail-label">Impact</div>
+        <p>Reduced test data setup time from hours to minutes. Reusable across multiple test environments.</p>
+      </div>
+      <div class="proj-stack">
+        <span class="proj-tag">C#</span><span class="proj-tag">.NET</span>
+        <span class="proj-tag">Bogus</span><span class="proj-tag">SemaphoreSlim</span>
+        <span class="proj-tag">Retry logic</span><span class="proj-tag">CSV</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <span class="proj-badge">Performance</span>
+      </div>
+      <div class="proj-name">CX Performance Test Suite</div>
+      <div class="proj-desc">Pre-release performance benchmarking pipeline measuring p50 and p95 response times across critical customer-facing journeys at Motive.</div>
+      <div class="proj-detail">
+        <div class="proj-detail-label">Engineering decisions</div>
+        <p>Integrated directly into Jenkins CI/CD — suite runs before every release candidate. Thresholds defined per endpoint. Failures block deployment automatically.</p>
+      </div>
+      <div class="proj-detail">
+        <div class="proj-detail-label">Impact</div>
+        <p>Caught three performance regressions pre-release that would have violated fleet SLAs affecting thousands of drivers.</p>
+      </div>
+      <div class="proj-stack">
+        <span class="proj-tag">Playwright</span><span class="proj-tag">Jenkins</span>
+        <span class="proj-tag">p50/p95</span><span class="proj-tag">AWS</span>
+        <span class="proj-tag">SLA monitoring</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l2 2-2 2M11 10h4"/></svg>
+        </div>
+        <span class="proj-badge">Automation</span>
+      </div>
+      <div class="proj-name">QA Automation Framework — IDS</div>
+      <div class="proj-desc">End-to-end Selenium C# automation framework covering Service CRM across web, desktop, and mobile — built from near-zero to 70% coverage.</div>
+      <div class="proj-detail">
+        <div class="proj-detail-label">Engineering decisions</div>
+        <p>Page Object Model for maintainability, TDD with NUnit, TextMagic API integration for SMS workflows, Jenkins CI/CD with Extent Reports and email notifications, PR review gates for script quality.</p>
+      </div>
+      <div class="proj-detail">
+        <div class="proj-detail-label">Impact</div>
+        <p>70% automation coverage. Regression cycle time reduced by 40%. Release confidence increased significantly across the QA team.</p>
+      </div>
+      <div class="proj-stack">
+        <span class="proj-tag">Selenium</span><span class="proj-tag">C#</span>
+        <span class="proj-tag">NUnit</span><span class="proj-tag">POM</span>
+        <span class="proj-tag">Jenkins</span><span class="proj-tag">Extent Reports</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-label">Experience</div>
+  <h2 class="sec-h">Where I have shipped quality</h2>
+  <div class="exp-timeline">
+
+    <div class="exp-card">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role">QA Engineer IV</div>
+          <div class="exp-co">Motive</div>
+          <div class="exp-domain">Fleet Management and Driver Safety · SaaS · AWS · Agile</div>
+        </div>
+        <div class="exp-date"><strong>June 2025</strong>Present</div>
+      </div>
+      <ul class="exp-buls">
+        <li class="star">Architected and owned the CX Performance Test Suite — pre-release p50/p95 benchmarking pipeline integrated into Jenkins CI/CD, blocking deployments when SLAs breach.</li>
+        <li>Engineered Playwright end-to-end UI automation for fleet management and driver safety regression coverage on AWS infrastructure.</li>
+        <li>Designed Postman/Newman API automation suites validating telematics endpoints for schema integrity, functional correctness, and edge-case handling.</li>
+        <li>Validated Statsig feature flag rollouts across user segments; monitored application health via Datadog and TrackJS; coordinated on-call incident response via Rootly.</li>
+        <li>Validated AWS SQS asynchronous event-driven flows ensuring message delivery reliability for queue-dependent features.</li>
+        <li>Applied Claude AI agents with custom prompt engineering and agentic workflows to accelerate test planning, bug documentation, and automation script generation.</li>
+        <li>Served as QA point of contact across agile sprints — release readiness, post-production validation, and customer defect triage.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role">Automation Engineer</div>
+          <div class="exp-co">Technochrom Solutions</div>
+          <div class="exp-domain">Banking and Healthcare · Regulatory Compliance Testing</div>
+        </div>
+        <div class="exp-date"><strong>Jan 2024</strong>Ongoing</div>
+      </div>
+      <ul class="exp-buls">
+        <li class="star">Created and published reusable JAR libraries to Maven repositories — established a modular test architecture that cut framework setup time and improved cross-team reusability.</li>
+        <li>Built Gradle/Maven BDD automation frameworks using Cucumber, Gherkin, Selenium, and Appium for end-to-end functional and API test coverage.</li>
+        <li>Automated HAR file capture (ExperiTest SeeTest) for mobile/web network analysis; integrated SQL validation with Extent Reports for audit-grade traceability.</li>
+        <li>Conducted cross-platform iOS and Android testing via BrowserStack and ExperiTest SeeTest; built Adobe Analytics dashboards for performance monitoring.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role">SQA Manual and Automation Analyst</div>
+          <div class="exp-co">Integrated Dealer Systems</div>
+          <div class="exp-domain">Automotive and RV Dealership Software · Web · Desktop · Mobile</div>
+        </div>
+        <div class="exp-date"><strong>May 2022</strong>Dec 2023</div>
+      </div>
+      <ul class="exp-buls">
+        <li class="star">Led Service CRM automation in a .NET/C# Selenium framework (POM, TDD, NUnit) — delivered 70% automation coverage and reduced regression cycle time by 40%, directly accelerating release velocity.</li>
+        <li>Integrated TextMagic API within the automation framework; enhanced Jenkins CI/CD with Extent Reports and email notifications; conducted PR reviews for script quality.</li>
+        <li>Implemented AccelQ, Mabl, and TestRigor AI automation across desktop, web, mobile, and API environments for broad coverage with minimal manual effort.</li>
+        <li>Served as QA POC for release management — coordinated deployments, post-production validation, and customer bug resolution via JIRA.</li>
+        <li>Performed functional, Postman API, and DBeaver SQL testing across web, desktop, and mobile layers.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-top">
+        <div>
+          <div class="exp-role">Software Development and Testing Intern</div>
+          <div class="exp-co">NeoDocto Inc.</div>
+          <div class="exp-domain">AI Interviewer Platform</div>
+        </div>
+        <div class="exp-date"><strong>Oct 2021</strong>Apr 2022</div>
+      </div>
+      <ul class="exp-buls">
+        <li class="star">Led testing of OxyMars Project as team lead — ran regular stand-ups and individual review sessions, demonstrating early ownership of delivery quality.</li>
+        <li>Delivered 100+ hours of QA on the AI interviewer platform; developed test plans, test cases, and scripts; documented bugs across the India-Sydney Project.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- CURRENTLY WORKING ON -->
+<section id="current">
+  <div class="sec-label">Currently building</div>
+  <h2 class="sec-h">Always in motion</h2>
+  <p class="sec-sub">What I am actively learning, building, and shipping right now.</p>
+  <div class="current-grid">
+    <div class="current-card">
+      <div class="current-tag">Deepening</div>
+      <div class="current-title">Playwright Advanced Patterns</div>
+      <div class="current-desc">Building fixture-based test architecture, API request interception for mocking, and visual regression with screenshot diffing.</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+    </div>
+    <div class="current-card">
+      <div class="current-tag">Exploring</div>
+      <div class="current-title">AI-Assisted Test Generation</div>
+      <div class="current-desc">Using Claude AI agents with hooks and skills to auto-generate test cases from OpenAPI specs and user stories at scale.</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+    </div>
+    <div class="current-card">
+      <div class="current-tag">Shipping</div>
+      <div class="current-title">Find My Mechanic v2</div>
+      <div class="current-desc">Adding real-time booking, mechanic rating system, and a full Playwright test suite covering all critical user flows.</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="sec-label">Contact</div>
+    <div class="contact-h">Let's build something<br>that does not break.</div>
+    <div class="contact-sub">
+      Open to senior SDET / QA Automation Engineer roles. Remote preferred. Response within 24 hours.
+    </div>
+    <div class="contact-links">
+      <button class="contact-btn" onclick="window.location.href='mailto:roshna.iqbal@gmail.com'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        roshna.iqbal@gmail.com
+      </button>
+      <button class="contact-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </button>
+      <button class="contact-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </button>
+      <button class="contact-btn" onclick="window.open('Roshna_Iqbal_CV_Final.pdf')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Download CV
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2025 Roshna Iqbal. All rights reserved.</div>
+  <div class="footer-avail"><div class="footer-dot"></div>Available for remote work</div>
+</footer>
+
+<script>
+const STEPS = [
+  { label: 'Launch Playwright browser (Chromium)', log: '  Browser: chromium\n  Viewport: 1280x720\n  Headless: true', ms: 380 },
+  { label: 'Navigate to /login page', log: '  → GET https://the-internet.herokuapp.com/login\n  ✓ Status 200 [211ms]', ms: 320 },
+  { label: 'Assert page title and form elements', log: '  ✓ title: "The Internet"\n  ✓ input[name=username] visible\n  ✓ input[name=password] visible', ms: 180 },
+  { label: 'Fill invalid credentials, assert error', log: '  fill: username = "wrong_user"\n  fill: password = "wrong_pass"\n  click: button[type=submit]\n  ✓ .flash.error visible [143ms]', ms: 540 },
+  { label: 'Fill valid credentials, submit form', log: '  fill: username = "tomsmith"\n  fill: password = "SuperSecretPassword!"\n  click: button[type=submit]', ms: 410 },
+  { label: 'Assert successful login state', log: '  ✓ URL → /secure\n  ✓ .flash.success contains "You logged into"\n  ✓ logout button visible', ms: 290 },
+  { label: 'Navigate to /form, fill and submit', log: '  → GET /checkboxes\n  ✓ checkbox[0] checked\n  ✓ checkbox[1] unchecked\n  toggle both → assert state', ms: 480 },
+  { label: 'Generate pass/fail report', log: '  ─────────────────────────────\n  Passed: 7    Failed: 0\n  Duration: 3.2s\n  ─────────────────────────────', ms: 120 },
+];
+
+let running = false;
+
+async function runAutomation() {
+  if (running) return;
+  running = true;
+
+  const btn = document.getElementById('execBtn');
+  const terminal = document.getElementById('terminal');
+  const results = document.getElementById('autoResults');
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinning">↻</span> Running...';
+  results.style.display = 'none';
+
+  for (let i = 0; i < 8; i++) {
+    const step = document.getElementById('step' + i);
+    const dot = document.getElementById('dot' + i);
+    step.className = 'step active';
+    dot.innerHTML = '↻';
+
+    await sleep(STEPS[i].ms + Math.random() * 200);
+
+    step.className = 'step done';
+    dot.innerHTML = '✓';
+
+    const line = document.createElement('div');
+    const time = (STEPS[i].ms / 1000).toFixed(2) + 's';
+    line.innerHTML = '<span style="color:#7c5cfc">▸</span> <span style="color:#a78bfa">' + STEPS[i].label + '</span>';
+    terminal.appendChild(line);
+
+    const detail = document.createElement('div');
+    detail.style.cssText = 'color:#555568;white-space:pre;margin-bottom:4px;font-size:10.5px';
+    detail.textContent = STEPS[i].log;
+    terminal.appendChild(detail);
+    terminal.scrollTop = terminal.scrollHeight;
+    await sleep(60);
+  }
+
+  const done = document.createElement('div');
+  done.style.cssText = 'color:#22c55e;margin-top:6px;font-weight:500';
+  done.textContent = '✓ Suite complete — 7 passed, 0 failed in 3.2s';
+  terminal.appendChild(done);
+  terminal.scrollTop = terminal.scrollHeight;
+
+  results.style.display = 'flex';
+  btn.disabled = false;
+  btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Run Again';
+  running = false;
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const el = document.querySelector(a.getAttribute('href'));
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.skill-card, .proj-card, .exp-card, .current-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
