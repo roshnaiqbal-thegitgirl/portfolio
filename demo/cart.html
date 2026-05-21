@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Swag Labs</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f8f8;min-height:100vh}
+.hdr{background:#132322;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.hdr-l{display:flex;align-items:center;gap:14px}
+.hdr-logo{color:#fff;font-size:20px;font-weight:800}
+.menu-btn{color:#fff;font-size:22px;cursor:pointer;line-height:1}
+.cart-wrap{position:relative}
+.cart-badge{position:absolute;top:-6px;right:-8px;background:#e2231a;color:#fff;font-size:10px;font-weight:800;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.bar{padding:18px 24px;background:#fff;border-bottom:1px solid #e8e8e8}
+.bar h2{font-size:18px;font-weight:800;color:#132322}
+.wrap{padding:24px;max-width:800px}
+.col-hdr{display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:2px solid #132322;font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px}
+.item{display:flex;gap:18px;padding:16px 0;border-bottom:1px solid #e8e8e8;align-items:flex-start}
+.qty{width:30px;font-size:14px;color:#555;font-weight:700;padding-top:2px;flex-shrink:0}
+.info{flex:1}
+.item-name{font-size:15px;font-weight:800;color:#132322;margin-bottom:6px}
+.item-desc{font-size:12px;color:#666;line-height:1.55}
+.remove{background:none;border:none;color:#132322;font-size:11px;font-weight:700;text-decoration:underline;cursor:pointer;margin-top:10px;display:block}
+.item-price{font-size:16px;font-weight:800;color:#132322;flex-shrink:0;padding-top:2px}
+.footer{display:flex;justify-content:space-between;padding-top:22px;margin-top:8px}
+.btn-ghost{background:none;border:1px solid #132322;color:#132322;padding:12px 22px;border-radius:3px;font-size:13px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.3px}
+.btn-green{background:#3ddc91;color:#132322;padding:12px 22px;border-radius:3px;font-size:13px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.3px;border:none}
+.btn-green:hover{background:#2fc97a}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="hdr-l">
+    <div class="menu-btn">☰</div>
+    <span class="hdr-logo">Swag Labs</span>
+  </div>
+  <div class="cart-wrap">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+    <div class="cart-badge">1</div>
+  </div>
+</div>
+<div class="bar"><h2>Your Cart</h2></div>
+<div class="wrap">
+  <div class="col-hdr"><span>QTY</span><span>Description</span><span>Unit Price</span></div>
+  <div class="item">
+    <div class="qty">1</div>
+    <div class="info">
+      <div class="item-name">Sauce Labs Backpack</div>
+      <div class="item-desc">carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.</div>
+      <button class="remove">Remove</button>
+    </div>
+    <div class="item-price">$29.99</div>
+  </div>
+  <div class="footer">
+    <button class="btn-ghost" onclick="history.back()">← Continue Shopping</button>
+    <button class="btn-green">Checkout →</button>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Swag Labs</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#eef2f7;min-height:100vh;display:flex;flex-direction:column}
+.hdr{background:#132322;padding:14px 24px;display:flex;align-items:center;gap:10px}
+.hdr span{color:#fff;font-size:20px;font-weight:800;letter-spacing:.3px}
+.main{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.card{background:#fff;border-radius:4px;padding:44px 36px;width:100%;max-width:360px}
+h2{font-size:17px;font-weight:700;color:#132322;text-align:center;text-transform:uppercase;letter-spacing:1px;margin-bottom:28px}
+.inp{width:100%;padding:12px 14px;border:1px solid #bcc5cb;border-radius:3px;font-size:14px;color:#333;outline:none;margin-bottom:12px;transition:border-color .15s,background .15s;background:#fff}
+.inp:focus,.inp.active{border-color:#3ddc91;background:rgba(61,220,145,.04)}
+.login-btn{width:100%;padding:13px;background:#3ddc91;color:#132322;font-size:14px;font-weight:800;border:none;border-radius:3px;cursor:pointer;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;transition:background .15s,transform .08s,opacity .08s}
+.login-btn:hover{background:#2fc97a}
+.login-btn.clicking{transform:scale(0.97);opacity:0.8}
+.err{border:1px solid #e2231a;background:#fdf2f2;color:#e2231a;padding:10px 14px;border-radius:3px;font-size:12.5px;margin-bottom:14px;display:none;line-height:1.5}
+.hint{margin-top:18px;font-size:11px;color:#aaa;text-align:center;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3ddc91" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+  <span>Swag Labs</span>
+</div>
+<div class="main">
+  <div class="card">
+    <h2>Login</h2>
+    <div class="err" id="err"><strong>Epic sadface:</strong> Username and password do not match any user in this service.</div>
+    <input class="inp" type="text" id="un" placeholder="Username" data-test="username" />
+    <input class="inp" type="password" id="pw" placeholder="Password" data-test="password" />
+    <button class="login-btn" data-test="login-button" onclick="doLogin()">Login</button>
+    <div class="hint">Accepted usernames: standard_user, locked_out_user, problem_user<br>Password for all users: secret_sauce</div>
+  </div>
+</div>
+<script>
+const p = new URLSearchParams(location.search);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+function doLogin() {
+  if (document.getElementById('un').value === 'standard_user' && document.getElementById('pw').value === 'secret_sauce') {
+    location.href = 'inventory.html';
+  } else {
+    document.getElementById('err').style.display = 'block';
+  }
+}
+
+async function typeField(el, txt, spd) {
+  el.value = '';
+  for (const c of txt) {
+    el.value += c;
+    el.classList.add('active');
+    await sleep(spd !== undefined ? spd : (26 + Math.random() * 20));
+  }
+}
+
+if (p.get('error') === '1') {
+  (async () => {
+    await sleep(120);
+    await typeField(document.getElementById('un'), 'bad_user', 18);
+    await sleep(80);
+    await typeField(document.getElementById('pw'), 'wrong_pass', 18);
+    await sleep(200);
+    const btn = document.querySelector('.login-btn');
+    btn.classList.add('clicking');
+    await sleep(110);
+    btn.classList.remove('clicking');
+    await sleep(60);
+    document.getElementById('err').style.display = 'block';
+  })();
+}
+
+if (p.get('autofill') === '1') {
+  (async () => {
+    await sleep(180);
+    await typeField(document.getElementById('un'), 'standard_user');
+    await sleep(120);
+    await typeField(document.getElementById('pw'), 'secret_sauce');
+    await sleep(260);
+    doLogin();
+  })();
+}
+</script>
+</body>
+</html>

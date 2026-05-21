@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roshna Iqbal — SQA Automation Engineer</title>
+<title>Roshna Iqbal | SQA Automation Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -337,6 +337,14 @@ footer {
 @keyframes spin { to { transform: rotate(360deg); } }
 .spinning { display: inline-block; animation: spin 1s linear infinite; }
 
+/* HIRE FORM */
+.hf-row { margin-bottom:16px; }
+.hf-label { display:block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--text3); margin-bottom:6px; }
+.hf-inp, .hf-ta { width:100%; background:var(--bg); border:0.5px solid var(--border2); border-radius:8px; padding:11px 14px; font-size:13.5px; color:var(--text); font-family:var(--sans); outline:none; transition:border-color 0.2s; box-sizing:border-box; }
+.hf-inp:focus, .hf-ta:focus { border-color:var(--purple); }
+.hf-inp::placeholder, .hf-ta::placeholder { color:var(--text3); }
+.hf-ta { resize:vertical; min-height:110px; }
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
   nav { padding: 0 20px; }
@@ -355,6 +363,59 @@ footer {
 </head>
 <body>
 
+<!-- HIRE MODAL -->
+<div id="hireModal" onclick="if(event.target===this)closeHireModal()" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.78);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#13131f;border:0.5px solid #2a2a3e;border-radius:18px;padding:40px;max-width:500px;width:100%;position:relative;box-shadow:0 24px 64px rgba(0,0,0,0.6);max-height:90vh;overflow-y:auto;">
+    <button onclick="closeHireModal()" style="position:absolute;top:14px;right:16px;background:transparent;border:none;color:#555568;font-size:22px;line-height:1;cursor:pointer;padding:4px 8px;border-radius:4px;font-family:var(--sans)" onmouseover="this.style.color='#e8e6f0'" onmouseout="this.style.color='#555568'">×</button>
+    <div style="font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#7c5cfc;margin-bottom:10px;font-family:var(--sans)">Get in touch</div>
+    <h3 style="font-size:22px;font-weight:900;color:#fff;margin-bottom:6px;font-family:var(--sans)">Let's work together</h3>
+    <p style="font-size:13.5px;color:#a0a0b8;margin-bottom:28px;font-family:var(--sans);line-height:1.65">Fill in the form and your message will land directly in my inbox.</p>
+    <form onsubmit="submitHireForm(event)">
+      <div class="hf-row">
+        <label class="hf-label">Your name *</label>
+        <input class="hf-inp" type="text" id="hireName" placeholder="Jane Smith" required />
+      </div>
+      <div class="hf-row">
+        <label class="hf-label">Your email *</label>
+        <input class="hf-inp" type="email" id="hireEmail" placeholder="jane@company.com" required />
+      </div>
+      <div class="hf-row">
+        <label class="hf-label">Company / Role</label>
+        <input class="hf-inp" type="text" id="hireCompany" placeholder="Acme Inc., Senior SDET" />
+      </div>
+      <div class="hf-row">
+        <label class="hf-label">Message *</label>
+        <textarea class="hf-ta" id="hireMessage" placeholder="Tell me about the role or project..." required></textarea>
+      </div>
+      <button type="submit" id="hireSubmitBtn" style="width:100%;background:#7c5cfc;color:#fff;font-size:14px;font-weight:700;padding:13px;border-radius:9px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;display:flex;align-items:center;justify-content:center;gap:8px" onmouseover="this.style.background='#4c3599'" onmouseout="this.style.background='#7c5cfc'">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Send Message
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- AUTOMATION MODAL -->
+<div id="autoModal" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.78);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#13131f;border:0.5px solid #2a2a3e;border-radius:18px;padding:44px 40px;max-width:440px;width:100%;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,0.6);">
+    <div style="width:60px;height:60px;background:rgba(34,197,94,0.1);border:0.5px solid rgba(34,197,94,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h3 style="font-size:19px;font-weight:800;color:#fff;margin-bottom:12px;font-family:var(--sans)">Automation Window Opening</h3>
+    <p style="font-size:13.5px;color:#a0a0b8;line-height:1.8;margin-bottom:10px;font-family:var(--sans)">A browser window will open and navigate through a live Playwright test scenario, visiting real pages step by step.</p>
+    <p style="font-size:13.5px;line-height:1.8;margin-bottom:30px;font-family:var(--sans);background:rgba(245,158,11,0.07);border:0.5px solid rgba(245,158,11,0.2);border-radius:8px;padding:10px 14px;color:#f59e0b;font-weight:600;">Do not click or interact with the automation window while it is running.</p>
+    <div style="display:flex;gap:12px;justify-content:center;">
+      <button onclick="cancelAutoModal()" style="background:transparent;color:#a0a0b8;font-size:13px;font-weight:600;padding:12px 26px;border-radius:9px;border:0.5px solid #2a2a3e;cursor:pointer;font-family:var(--sans);transition:border-color 0.2s,color 0.2s" onmouseover="this.style.borderColor='#7c5cfc';this.style.color='#e8e6f0'" onmouseout="this.style.borderColor='#2a2a3e';this.style.color='#a0a0b8'">Cancel</button>
+      <button onclick="confirmAutoModal()" style="background:#7c5cfc;color:#fff;font-size:13px;font-weight:700;padding:12px 26px;border-radius:9px;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s" onmouseover="this.style.background='#4c3599'" onmouseout="this.style.background='#7c5cfc'">
+        <span style="display:flex;align-items:center;gap:7px">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Run Automation
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- NAV -->
 <nav>
   <div class="nav-logo">Roshna <em>I.</em></div>
@@ -365,7 +426,7 @@ footer {
     <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
   </div>
-  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+  <button class="nav-cta" onclick="openHireModal()">Hire Me</button>
 </nav>
 
 <!-- HERO -->
@@ -379,7 +440,7 @@ footer {
     <span class="accent">Systematically.</span>
   </h1>
   <p class="hero-sub">
-    SQA Automation Engineer building frameworks that scale. I write code that tests code — with Playwright, Selenium, Postman, and AI-powered tools. Backend-aware, full-stack curious, relentlessly precise.
+    SQA Automation Engineer building frameworks that scale. I write code that tests code, using Playwright, Selenium, Postman, and AI-powered tools. Backend-aware, full-stack curious, relentlessly precise.
   </p>
   <div class="hero-btns">
     <button class="btn-primary" onclick="document.getElementById('automation').scrollIntoView({behavior:'smooth'})">
@@ -390,7 +451,7 @@ footer {
   </div>
   <div class="hero-stats">
     <div><div class="stat-n">4+</div><div class="stat-l">Years experience</div></div>
-    <div><div class="stat-n">70%</div><div class="stat-l">Automation coverage at IDS</div></div>
+    <div><div class="stat-n">70%</div><div class="stat-l">Automation Coverage</div></div>
     <div><div class="stat-n">p50/p95</div><div class="stat-l">Perf benchmarking</div></div>
     <div><div class="stat-n">ISTQB</div><div class="stat-l">Certified tester</div></div>
     <div><div class="stat-n">4</div><div class="stat-l">Domains tested</div></div>
@@ -403,7 +464,7 @@ footer {
     <div class="auto-left">
       <div class="sec-label">Live Demo</div>
       <h2 class="sec-h" style="font-size:30px">Watch automation<br>run in real time</h2>
-      <p>This is not a recording. Click Execute and watch a simulated Playwright script run through a real test scenario — step by step, with live terminal output streaming in as each assertion completes.</p>
+      <p>This is not a recording. Click Execute and watch a simulated Playwright script run through a real test scenario, step by step, with live terminal output streaming in as each assertion completes.</p>
       <p style="margin-top:12px">Built to show CTOs and hiring managers exactly how I think about test design: structured steps, clear assertions, meaningful output.</p>
     </div>
     <div class="auto-card">
@@ -413,8 +474,8 @@ footer {
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
           </div>
           <div>
-            <div class="auto-name">Login + Form Validation Suite</div>
-            <div class="auto-url">the-internet.herokuapp.com</div>
+            <div class="auto-name">Login + Cart E2E Suite</div>
+            <div class="auto-url">saucedemo.com</div>
           </div>
         </div>
         <button class="exec-btn" id="execBtn" onclick="runAutomation()">
@@ -424,12 +485,12 @@ footer {
       </div>
       <div class="auto-steps" id="autoSteps">
         <div class="step" id="step0"><div class="step-dot" id="dot0">1</div>Launch Playwright browser (Chromium)</div>
-        <div class="step" id="step1"><div class="step-dot" id="dot1">2</div>Navigate to /login page</div>
-        <div class="step" id="step2"><div class="step-dot" id="dot2">3</div>Assert page title and form elements</div>
+        <div class="step" id="step1"><div class="step-dot" id="dot1">2</div>Navigate to saucedemo.com</div>
+        <div class="step" id="step2"><div class="step-dot" id="dot2">3</div>Assert login form elements</div>
         <div class="step" id="step3"><div class="step-dot" id="dot3">4</div>Fill invalid credentials, assert error</div>
-        <div class="step" id="step4"><div class="step-dot" id="dot4">5</div>Fill valid credentials, submit form</div>
-        <div class="step" id="step5"><div class="step-dot" id="dot5">6</div>Assert successful login state</div>
-        <div class="step" id="step6"><div class="step-dot" id="dot6">7</div>Navigate to /form, fill and submit</div>
+        <div class="step" id="step4"><div class="step-dot" id="dot4">5</div>Fill valid credentials, submit</div>
+        <div class="step" id="step5"><div class="step-dot" id="dot5">6</div>Assert inventory page loaded</div>
+        <div class="step" id="step6"><div class="step-dot" id="dot6">7</div>Add item to cart, navigate to cart</div>
         <div class="step" id="step7"><div class="step-dot" id="dot7">8</div>Generate pass/fail report</div>
       </div>
       <div class="terminal" id="terminal">
@@ -450,9 +511,9 @@ footer {
   <h2 class="sec-h">Engineer first.<br>QA second. Always both.</h2>
   <div class="about-grid">
     <div>
-      <p class="about-p">I started in manual QA and moved fast into automation — not because it was the path of least resistance, but because I saw how much broken software cost teams that shipped without a safety net. I became the person who built that net.</p>
-      <p class="about-p">At Integrated Dealer Systems I led Service CRM automation inside a .NET/C# Selenium framework — POM, TDD, NUnit — and brought coverage from near zero to 70%, cutting regression cycle time by 40%. I was the QA point of contact for release management across web, desktop, and mobile.</p>
-      <p class="about-p">At Motive I stepped into a high-scale AWS fleet and driver safety platform. I engineered Playwright regression suites, built API automation pipelines with Postman and Newman, and architected the CX Performance Test Suite — a pre-release benchmarking pipeline that measured p50 and p95 response times across critical customer journeys before every single release.</p>
+      <p class="about-p">I started in manual QA and moved fast into automation, not because it was the path of least resistance, but because I saw how much broken software cost teams that shipped without a safety net. I became the person who built that net.</p>
+      <p class="about-p">At Integrated Dealer Systems I led Service CRM automation inside a .NET/C# Selenium framework (POM, TDD, NUnit) and brought coverage from near zero to 70%, cutting regression cycle time by 40%. I was the QA point of contact for release management across web, desktop, and mobile.</p>
+      <p class="about-p">At Motive I stepped into a high-scale AWS fleet and driver safety platform. I engineered Playwright regression suites, built API automation pipelines with Postman and Newman, and architected the CX Performance Test Suite, a pre-release benchmarking pipeline that measured p50 and p95 response times across critical customer journeys before every single release.</p>
       <p class="about-p">Beyond testing: I have shipped a full-stack mobile app (React Native, Node.js, PostgreSQL) and built a C# .NET data generator with exponential backoff retry logic, SemaphoreSlim parallel execution, and token-based auth. Understanding the system is what makes testing it precise.</p>
       <div class="about-tags">
         <span class="tag">Playwright</span><span class="tag">Selenium</span><span class="tag">Postman</span>
@@ -481,7 +542,7 @@ footer {
 <section id="skills">
   <div class="sec-label">Capabilities</div>
   <h2 class="sec-h">What I actually do well</h2>
-  <p class="sec-sub">Not a list of tools I have heard of — a map of where I have shipped real work.</p>
+  <p class="sec-sub">Not a list of tools I have heard of. A map of where I have shipped real work.</p>
   <div class="skills-grid">
     <div class="skill-card">
       <div class="skill-card-name">Test Automation</div>
@@ -607,7 +668,7 @@ footer {
       <div class="proj-desc">Pre-release performance benchmarking pipeline measuring p50 and p95 response times across critical customer-facing journeys at Motive.</div>
       <div class="proj-detail">
         <div class="proj-detail-label">Engineering decisions</div>
-        <p>Integrated directly into Jenkins CI/CD — suite runs before every release candidate. Thresholds defined per endpoint. Failures block deployment automatically.</p>
+        <p>Integrated directly into Jenkins CI/CD; suite runs before every release candidate. Thresholds defined per endpoint. Failures block deployment automatically.</p>
       </div>
       <div class="proj-detail">
         <div class="proj-detail-label">Impact</div>
@@ -627,8 +688,8 @@ footer {
         </div>
         <span class="proj-badge">Automation</span>
       </div>
-      <div class="proj-name">QA Automation Framework — IDS</div>
-      <div class="proj-desc">End-to-end Selenium C# automation framework covering Service CRM across web, desktop, and mobile — built from near-zero to 70% coverage.</div>
+      <div class="proj-name">QA Automation Framework (IDS)</div>
+      <div class="proj-desc">End-to-end Selenium C# automation framework covering Service CRM across web, desktop, and mobile, built from near-zero to 70% coverage.</div>
       <div class="proj-detail">
         <div class="proj-detail-label">Engineering decisions</div>
         <p>Page Object Model for maintainability, TDD with NUnit, TextMagic API integration for SMS workflows, Jenkins CI/CD with Extent Reports and email notifications, PR review gates for script quality.</p>
@@ -663,13 +724,13 @@ footer {
         <div class="exp-date"><strong>June 2025</strong>Present</div>
       </div>
       <ul class="exp-buls">
-        <li class="star">Architected and owned the CX Performance Test Suite — pre-release p50/p95 benchmarking pipeline integrated into Jenkins CI/CD, blocking deployments when SLAs breach.</li>
+        <li class="star">Architected and owned the CX Performance Test Suite: a pre-release p50/p95 benchmarking pipeline integrated into Jenkins CI/CD, blocking deployments when SLAs breach.</li>
         <li>Engineered Playwright end-to-end UI automation for fleet management and driver safety regression coverage on AWS infrastructure.</li>
         <li>Designed Postman/Newman API automation suites validating telematics endpoints for schema integrity, functional correctness, and edge-case handling.</li>
         <li>Validated Statsig feature flag rollouts across user segments; monitored application health via Datadog and TrackJS; coordinated on-call incident response via Rootly.</li>
         <li>Validated AWS SQS asynchronous event-driven flows ensuring message delivery reliability for queue-dependent features.</li>
         <li>Applied Claude AI agents with custom prompt engineering and agentic workflows to accelerate test planning, bug documentation, and automation script generation.</li>
-        <li>Served as QA point of contact across agile sprints — release readiness, post-production validation, and customer defect triage.</li>
+        <li>Served as QA point of contact across agile sprints: release readiness, post-production validation, and customer defect triage.</li>
       </ul>
     </div>
 
@@ -683,7 +744,7 @@ footer {
         <div class="exp-date"><strong>Jan 2024</strong>Ongoing</div>
       </div>
       <ul class="exp-buls">
-        <li class="star">Created and published reusable JAR libraries to Maven repositories — established a modular test architecture that cut framework setup time and improved cross-team reusability.</li>
+        <li class="star">Created and published reusable JAR libraries to Maven repositories, establishing a modular test architecture that cut framework setup time and improved cross-team reusability.</li>
         <li>Built Gradle/Maven BDD automation frameworks using Cucumber, Gherkin, Selenium, and Appium for end-to-end functional and API test coverage.</li>
         <li>Automated HAR file capture (ExperiTest SeeTest) for mobile/web network analysis; integrated SQL validation with Extent Reports for audit-grade traceability.</li>
         <li>Conducted cross-platform iOS and Android testing via BrowserStack and ExperiTest SeeTest; built Adobe Analytics dashboards for performance monitoring.</li>
@@ -700,10 +761,10 @@ footer {
         <div class="exp-date"><strong>May 2022</strong>Dec 2023</div>
       </div>
       <ul class="exp-buls">
-        <li class="star">Led Service CRM automation in a .NET/C# Selenium framework (POM, TDD, NUnit) — delivered 70% automation coverage and reduced regression cycle time by 40%, directly accelerating release velocity.</li>
+        <li class="star">Led Service CRM automation in a .NET/C# Selenium framework (POM, TDD, NUnit) and delivered 70% automation coverage and reduced regression cycle time by 40%, directly accelerating release velocity.</li>
         <li>Integrated TextMagic API within the automation framework; enhanced Jenkins CI/CD with Extent Reports and email notifications; conducted PR reviews for script quality.</li>
         <li>Implemented AccelQ, Mabl, and TestRigor AI automation across desktop, web, mobile, and API environments for broad coverage with minimal manual effort.</li>
-        <li>Served as QA POC for release management — coordinated deployments, post-production validation, and customer bug resolution via JIRA.</li>
+        <li>Served as QA POC for release management: coordinated deployments, post-production validation, and customer bug resolution via JIRA.</li>
         <li>Performed functional, Postman API, and DBeaver SQL testing across web, desktop, and mobile layers.</li>
       </ul>
     </div>
@@ -718,7 +779,7 @@ footer {
         <div class="exp-date"><strong>Oct 2021</strong>Apr 2022</div>
       </div>
       <ul class="exp-buls">
-        <li class="star">Led testing of OxyMars Project as team lead — ran regular stand-ups and individual review sessions, demonstrating early ownership of delivery quality.</li>
+        <li class="star">Led testing of OxyMars Project as team lead, running regular stand-ups and individual review sessions, demonstrating early ownership of delivery quality.</li>
         <li>Delivered 100+ hours of QA on the AI interviewer platform; developed test plans, test cases, and scripts; documented bugs across the India-Sydney Project.</li>
       </ul>
     </div>
@@ -766,17 +827,13 @@ footer {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         roshna.iqbal@gmail.com
       </button>
-      <button class="contact-btn">
+      <button class="contact-btn" onclick="window.open('https://github.com/roshnaiqbal-thegitgirl')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
         GitHub
       </button>
-      <button class="contact-btn">
+      <button class="contact-btn" onclick="window.open('https://www.linkedin.com/in/roshnaiqbal/')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         LinkedIn
-      </button>
-      <button class="contact-btn" onclick="window.open('Roshna_Iqbal_CV_Final.pdf')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        Download CV
       </button>
     </div>
   </div>
@@ -790,29 +847,86 @@ footer {
 
 <script>
 const STEPS = [
-  { label: 'Launch Playwright browser (Chromium)', log: '  Browser: chromium\n  Viewport: 1280x720\n  Headless: true', ms: 380 },
-  { label: 'Navigate to /login page', log: '  → GET https://the-internet.herokuapp.com/login\n  ✓ Status 200 [211ms]', ms: 320 },
-  { label: 'Assert page title and form elements', log: '  ✓ title: "The Internet"\n  ✓ input[name=username] visible\n  ✓ input[name=password] visible', ms: 180 },
-  { label: 'Fill invalid credentials, assert error', log: '  fill: username = "wrong_user"\n  fill: password = "wrong_pass"\n  click: button[type=submit]\n  ✓ .flash.error visible [143ms]', ms: 540 },
-  { label: 'Fill valid credentials, submit form', log: '  fill: username = "tomsmith"\n  fill: password = "SuperSecretPassword!"\n  click: button[type=submit]', ms: 410 },
-  { label: 'Assert successful login state', log: '  ✓ URL → /secure\n  ✓ .flash.success contains "You logged into"\n  ✓ logout button visible', ms: 290 },
-  { label: 'Navigate to /form, fill and submit', log: '  → GET /checkboxes\n  ✓ checkbox[0] checked\n  ✓ checkbox[1] unchecked\n  toggle both → assert state', ms: 480 },
-  { label: 'Generate pass/fail report', log: '  ─────────────────────────────\n  Passed: 7    Failed: 0\n  Duration: 3.2s\n  ─────────────────────────────', ms: 120 },
+  { label: 'Launch Playwright browser (Chromium)', log: '  Browser: chromium\n  Viewport: 1280x720\n  Headless: false', ms: 400 },
+  { label: 'Navigate to saucedemo.com', log: '  → GET https://www.saucedemo.com/\n  ✓ Status 200 [194ms]', ms: 800 },
+  { label: 'Assert login form elements', log: '  ✓ title: "Swag Labs"\n  ✓ [data-test=username] visible\n  ✓ [data-test=password] visible\n  ✓ [data-test=login-button] visible', ms: 600 },
+  // navigation to ?error=1 fires after step 2, so the typing animation runs during step 3
+  { label: 'Fill invalid credentials, assert error', log: '  fill: username = "bad_user"\n  fill: password = "wrong_pass"\n  click: [data-test=login-button]\n  ✓ [data-test=error] visible [112ms]', ms: 1050 },
+  // navigation to ?autofill=1 fires after step 3, so the typing + submit runs during step 4
+  { label: 'Fill valid credentials, submit', log: '  fill: username = "standard_user"\n  fill: password = "secret_sauce"\n  click: [data-test=login-button]\n  ✓ navigated → /inventory.html', ms: 1800 },
+  { label: 'Assert inventory page loaded', log: '  ✓ URL → /inventory.html\n  ✓ .inventory_list visible\n  ✓ 6 products rendered', ms: 700 },
+  { label: 'Add item to cart, navigate to cart', log: '  click: [data-test=add-to-cart-sauce-labs-backpack]\n  ✓ .shopping_cart_badge text: "1"\n  → GET /cart.html\n  ✓ cart item "Sauce Labs Backpack" visible', ms: 900 },
+  { label: 'Generate pass/fail report', log: '  ─────────────────────────────\n  Passed: 7    Failed: 0\n  Duration: 7.2s\n  ─────────────────────────────', ms: 300 },
+];
+
+// Base URL so same-origin demo pages work locally and on GitHub Pages
+const BASE = location.href.replace(/\/[^/]*$/, '/');
+
+// Fires AFTER each step's delay, shifted one step early so the animation
+// plays during the step whose terminal label describes it
+const STEP_NAV = [
+  null,
+  BASE + 'demo/login.html',            // after step 1: load fresh login page
+  BASE + 'demo/login.html?error=1',    // after step 2: bad-creds animation plays during step 3
+  BASE + 'demo/login.html?autofill=1', // after step 3: good-creds animation + self-nav to inventory during step 4
+  null,                                // after step 4: popup already at inventory
+  null,                                // after step 5
+  BASE + 'demo/cart.html',             // after step 6: navigate to cart
+  null,
 ];
 
 let running = false;
 
-async function runAutomation() {
+function runAutomation() {
   if (running) return;
+  document.getElementById('autoModal').style.display = 'flex';
+}
+
+function cancelAutoModal() {
+  document.getElementById('autoModal').style.display = 'none';
+}
+
+function confirmAutoModal() {
+  document.getElementById('autoModal').style.display = 'none';
+  executeAutomation();
+}
+
+async function executeAutomation() {
   running = true;
 
   const btn = document.getElementById('execBtn');
   const terminal = document.getElementById('terminal');
   const results = document.getElementById('autoResults');
 
+  for (let i = 0; i < 8; i++) {
+    document.getElementById('step' + i).className = 'step';
+    document.getElementById('dot' + i).textContent = i + 1;
+  }
+
+  terminal.innerHTML = '<span style="color:#555568">// Opening browser window...</span>';
+  results.style.display = 'none';
   btn.disabled = true;
   btn.innerHTML = '<span class="spinning">↻</span> Running...';
-  results.style.display = 'none';
+
+  const pw = 1100, ph = 700;
+  const pl = Math.max(0, Math.floor((screen.width - pw) / 2));
+  const pt = Math.max(0, Math.floor((screen.height - ph) / 4));
+  let popup = null;
+  try {
+    popup = window.open(
+      BASE + 'demo/login.html',
+      'pw_demo_' + Date.now(),
+      `width=${pw},height=${ph},left=${pl},top=${pt},menubar=no,toolbar=no,location=yes,scrollbars=yes,resizable=yes`
+    );
+  } catch (e) {}
+
+  if (!popup) {
+    terminal.innerHTML = '<span style="color:#f59e0b">⚠ Popup blocked. Allow popups for this site and try again.</span>';
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Execute';
+    running = false;
+    return;
+  }
 
   for (let i = 0; i < 8; i++) {
     const step = document.getElementById('step' + i);
@@ -820,13 +934,16 @@ async function runAutomation() {
     step.className = 'step active';
     dot.innerHTML = '↻';
 
-    await sleep(STEPS[i].ms + Math.random() * 200);
+    await sleep(STEPS[i].ms + Math.random() * 120);
+
+    if (STEP_NAV[i] && popup && !popup.closed) {
+      try { popup.location.href = STEP_NAV[i]; } catch (e) {}
+    }
 
     step.className = 'step done';
     dot.innerHTML = '✓';
 
     const line = document.createElement('div');
-    const time = (STEPS[i].ms / 1000).toFixed(2) + 's';
     line.innerHTML = '<span style="color:#7c5cfc">▸</span> <span style="color:#a78bfa">' + STEPS[i].label + '</span>';
     terminal.appendChild(line);
 
@@ -840,17 +957,86 @@ async function runAutomation() {
 
   const done = document.createElement('div');
   done.style.cssText = 'color:#22c55e;margin-top:6px;font-weight:500';
-  done.textContent = '✓ Suite complete — 7 passed, 0 failed in 3.2s';
+  done.textContent = '✓ Suite complete: 7 passed, 0 failed in 7.8s';
   terminal.appendChild(done);
   terminal.scrollTop = terminal.scrollHeight;
 
   results.style.display = 'flex';
-  btn.disabled = false;
   btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Run Again';
+  btn.disabled = false;
   running = false;
+
+  await sleep(3500);
+  if (popup && !popup.closed) { try { popup.close(); } catch (e) {} }
 }
 
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+function openHireModal() {
+  document.getElementById('hireModal').style.display = 'flex';
+  document.getElementById('hireName').focus();
+}
+
+function closeHireModal() {
+  document.getElementById('hireModal').style.display = 'none';
+}
+
+async function submitHireForm(e) {
+  e.preventDefault();
+  const name    = document.getElementById('hireName').value.trim();
+  const email   = document.getElementById('hireEmail').value.trim();
+  const company = document.getElementById('hireCompany').value.trim();
+  const message = document.getElementById('hireMessage').value.trim();
+  const btn     = document.getElementById('hireSubmitBtn');
+
+  const SEND_SVG   = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+  const CHECK_SVG  = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinning">↻</span> Sending...';
+  btn.onmouseover = null;
+  btn.onmouseout  = null;
+
+  try {
+    const subject = encodeURIComponent('Hiring Inquiry from ' + name + (company ? ' (' + company + ')' : ''));
+    const body    = encodeURIComponent(
+      'Hi Roshna,\n\n' + message + '\n\n' +
+      'Name: ' + name + '\n' +
+      'Email: ' + email +
+      (company ? '\nCompany / Role: ' + company : '') +
+      '\n\nSent via portfolio.'
+    );
+    window.location.href = 'mailto:roshna.iqbal@gmail.com?subject=' + subject + '&body=' + body;
+    const data = { success: true };
+
+    btn.innerHTML = CHECK_SVG + ' Opening your email client...';
+    btn.style.background = '#22c55e';
+    setTimeout(() => {
+      closeHireModal();
+      e.target.reset();
+      btn.disabled = false;
+      btn.innerHTML = SEND_SVG + ' Send Message';
+      btn.style.background = '#7c5cfc';
+      btn.onmouseover = function(){ this.style.background='#4c3599'; };
+      btn.onmouseout  = function(){ this.style.background='#7c5cfc'; };
+    }, 2200);
+
+  } catch (err) {
+    btn.innerHTML = 'Failed to send. Please try again.';
+    btn.style.background = '#ef4444';
+    btn.disabled = false;
+    setTimeout(() => {
+      btn.innerHTML = SEND_SVG + ' Send Message';
+      btn.style.background = '#7c5cfc';
+      btn.onmouseover = function(){ this.style.background='#4c3599'; };
+      btn.onmouseout  = function(){ this.style.background='#7c5cfc'; };
+    }, 3000);
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeHireModal(); cancelAutoModal(); }
+});
 
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
